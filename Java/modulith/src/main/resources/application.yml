@@ -1,0 +1,43 @@
+server:
+  port: 8080
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  modulith:
+    events:
+      republish-outstanding-events-on-restart: true
+
+# Storage Configuration (choose one)
+storage:
+  type: filesystem  # Options: filesystem, s3, azure, gcs
+
+# AWS S3 Configuration (if using S3)
+aws:
+  access-key: ${AWS_ACCESS_KEY}
+  secret-key: ${AWS_SECRET_KEY}
+  region: us-east-1
+  s3:
+    bucket: my-document-bucket
+
+# Azure Storage Configuration (if using Azure)
+azure:
+  storage:
+    connection-string: ${AZURE_STORAGE_CONNECTION_STRING}
+    container: documents
+
+# Google Cloud Storage Configuration (if using GCS)
+gcs:
+  project-id: ${GCP_PROJECT_ID}
+  bucket: my-document-bucket
+
+# Ollama Configuration
+ollama:
+  base-url: http://localhost:11434
+  model: llama2
+
+logging:
+  level:
+    com.example.documentprocessor: DEBUG
